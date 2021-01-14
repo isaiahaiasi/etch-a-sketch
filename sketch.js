@@ -3,15 +3,15 @@ const root = document.documentElement;
 const etchContainer = document.querySelector(".etch-container");
 const gridResetBtn = document.querySelector("#grid-reset-btn");
 
-const gridSize = 60;
+const initialGridSize = 60;
 
 
 let pixels = [];
-
-let getColor = totallyRandomColor;
+let recolorable = true;
+let getColor = chiaroscuro;
 
 function setPixelColor(e) {
-  e.target.style.backgroundColor = getColor();
+  e.target.style.backgroundColor = getColor(e);
 }
 
 function generateGrid(size) {
@@ -21,6 +21,7 @@ function generateGrid(size) {
   pixels = [];
 
   root.style.setProperty("--grid-size", size);
+
   for(let i = 0; i < (size * size); i++) {
     let pixel = document.createElement("div");
     pixel.setAttribute("class","pixel");
@@ -29,9 +30,11 @@ function generateGrid(size) {
     pixel.addEventListener("mouseenter", setPixelColor);
   
     pixel.addEventListener("mouseleave", e => {
-      pixel.removeEventListener("mouseenter", setPixelColor);
+      if (!recolorable) {
+        pixel.removeEventListener("mouseenter", setPixelColor);
+      }
     });
-  
+
     etchContainer.appendChild(pixel);
     pixels.push(pixel);
   }
@@ -43,21 +46,40 @@ function randomShade() {
   return `hsl(40, 50%, ${shade}%)`;
 }
 
-function constantColor(e) {
+function constantColor() {
   return "blue";
 }
 
-function totallyRandomColor(e) {
+function totallyRandomColor() {
   let r = Math.random() * 256;
   let g = Math.random() * 256;
   let b = Math.random() * 256;
   return `rgb(${r},${g},${b})`;
 }
 
+// The only reason I pass the event to these functions...
+function chiaroscuro(e) {
+  let color = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
+  console.log(color);
+  let rgb = color.match(/([0-9])+/gi); // Oof, I need to improve my regex...
+  rgb = [(+rgb[0]), (+rgb[0]), (+rgb[0])];
+  let rgbSum = rgb[0] + rgb[1] + rgb[2];
+  let overallBrightnessReduction = (255 * 3 / 10) / rgbSum;
+
+  let rgbNew = [];
+  for(let i = 0; i < 3; i++) {
+    let rgbSubtract = rgb[i] * overallBrightnessReduction;
+    console.log(rgbSubtract);
+    rgbNew[i] = rgb[i] - rgbSubtract;
+  }
+  return `rgb(${rgbNew[0]},${rgbNew[1]},${rgbNew[2]})`;
+  
+}
+
 // MAIN
-generateGrid(gridSize);
+generateGrid(initialGridSize);
 
 gridResetBtn.addEventListener("click", ()=> {
   let newSize = prompt("What grid size do you want?");
-  generateGrid(Math.min(newSize, 100));
+  generateGrid(Math.min(Math.max(newSize,2), 100));
 });
