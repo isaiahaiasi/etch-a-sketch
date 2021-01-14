@@ -58,13 +58,12 @@ function totallyRandomColor() {
 }
 
 // The only reason I pass the event to these functions...
-// This implementation is a little goofy when going over colors, because it DOES
-// Darken a colored pixel 10%, but the final col is grey due to subtract ratios
+// TODO: refactor so I'm just passing the div, so I can call outside of the event
 function chiaroscuro(e) {
   let color = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
   console.log(color);
-  let rgb = color.match(/([0-9])+/gi); // Oof, I need to improve my regex...
-  rgb = [(+rgb[0]), (+rgb[0]), (+rgb[0])];
+  let rgb = color.match(/([0-9])+/gi);
+  rgb = [(+rgb[0]), (+rgb[1]), (+rgb[2])];
   let rgbSum = rgb[0] + rgb[1] + rgb[2];
   let overallBrightnessReduction = (255 * 3 / 10) / rgbSum;
 
