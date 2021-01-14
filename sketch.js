@@ -1,9 +1,9 @@
 
 const root = document.documentElement;
 const etchContainer = document.querySelector(".etch-container");
-const gridResetBtn = document.querySelector("#grid-reset-btn");
+const gridResetBtn = document.querySelector("#reset-btn");
 
-const initialGridSize = 60;
+const initialGridSize = 16;
 
 
 let pixels = [];
@@ -47,7 +47,7 @@ function randomShade() {
 }
 
 function constantColor() {
-  return "blue";
+  return "rgb(0,0,255)";
 }
 
 function totallyRandomColor() {
@@ -61,19 +61,21 @@ function totallyRandomColor() {
 // TODO: refactor so I'm just passing the div, so I can call outside of the event
 function chiaroscuro(e) {
   let color = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
-  console.log(color);
-  let rgb = color.match(/([0-9])+/gi);
-  rgb = [(+rgb[0]), (+rgb[1]), (+rgb[2])];
+  let rgb = color.match(/([0-9.])+/gi);
+  rgb = [(+rgb[0]), (+rgb[1]), (+rgb[2]), (+rgb[3])];
+  rgb[3] = isNaN(rgb[3]) ? 1 : rgb[3];
   let rgbSum = rgb[0] + rgb[1] + rgb[2];
+  rgbSum = rgbSum > 0 ? rgbSum : 1;
   let overallBrightnessReduction = (255 * 3 / 10) / rgbSum;
 
   let rgbNew = [];
   for(let i = 0; i < 3; i++) {
     let rgbSubtract = rgb[i] * overallBrightnessReduction;
-    console.log(rgbSubtract);
     rgbNew[i] = rgb[i] - rgbSubtract;
   }
-  return `rgb(${rgbNew[0]},${rgbNew[1]},${rgbNew[2]})`;
+
+  let newColor = `rgba(${rgbNew[0]},${rgbNew[1]},${rgbNew[2]}, ${rgb[3] + 0.1})`;
+  return newColor;
   
 }
 

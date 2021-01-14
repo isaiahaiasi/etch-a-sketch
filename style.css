@@ -3,6 +3,18 @@
   --grid-size: 4;
 }
 
+body {
+  display:flex;
+  flex-direction:column;
+  background-color:lightcoral
+}
+.centered {
+  margin:auto;
+}
+
+header {
+  font-size: xx-large;
+}
 
 .etch-container {
   width: 500px;
@@ -15,5 +27,15 @@
 
 .pixel {
   border: 1px solid rgba(0, 0, 0, 0.192);
-  background-color:rgb(255, 255, 255);
+  background-color:rgba(0, 0, 0, 0);
+}
+
+.btn {
+  padding:5px;
+  margin:5px;
+  border-radius: 10px;
+}
+
+.option-container {
+  display:flex;
 }

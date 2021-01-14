@@ -7,8 +7,23 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <button class="btn" id="grid-reset-btn">Reset grid</button>
-    <div class="etch-container">
+    <header class="centered">ETCH-A-SKETCH</header>
+    <div class="option-container centered">
+      <p>Pen Modes:</p>
+      <button class="btn" data-mode="selected">Selected Color</button>
+      <button class="btn" data-mode="random">Random Color</button>
+      <button class="btn" data-mode="random-range">Random Color In Range</button>
+    </div>
+    <div class="option-container centered">
+      <p>Blend Modes:</p>
+      <button class="btn" data-mode="replace">Replace</button>
+      <button class="btn" data-mode="overlay">Overlay</button>
+      <button class="btn" data-mode="multiply">Multiply</button>
+    </div>
+    <div class="etch-container centered">
+    </div>
+    <div class="option-container centered">
+      <button class="btn" id="reset-btn">Reset grid</button>
     </div>
   </body>
 </html>
