@@ -1,0 +1,22 @@
+
+.root {
+  --grid-size: 4;
+}
+
+
+.etch-container {
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-template-rows: repeat(var(--grid-size), 1fr);
+  border: 1px solid black;
+}
+
+.pixel {
+  border: 1px solid black;
+}
+
+.pixel:hover {
+  background-color:aqua;
+}
