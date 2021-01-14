@@ -8,7 +8,11 @@ const gridSize = 60;
 
 let pixels = [];
 
-let setPixelColor = randomShade;
+let getColor = totallyRandomColor;
+
+function setPixelColor(e) {
+  e.target.style.backgroundColor = getColor();
+}
 
 function generateGrid(size) {
   while (etchContainer.firstChild) {
@@ -34,13 +38,20 @@ function generateGrid(size) {
 }
 
 // Coloring functions
-function randomShade(e) {
+function randomShade() {
   let shade = Math.random() * 100;
-  e.target.style.backgroundColor = `hsl(40, 50%, ${shade}%`;
+  return `hsl(40, 50%, ${shade}%)`;
 }
 
 function constantColor(e) {
-  e.target.style.backgroundColor = "blue";
+  return "blue";
+}
+
+function totallyRandomColor(e) {
+  let r = Math.random() * 256;
+  let g = Math.random() * 256;
+  let b = Math.random() * 256;
+  return `rgb(${r},${g},${b})`;
 }
 
 // MAIN
