@@ -58,6 +58,8 @@ function totallyRandomColor() {
 }
 
 // The only reason I pass the event to these functions...
+// This implementation is a little goofy when going over colors, because it DOES
+// Darken a colored pixel 10%, but the final col is grey due to subtract ratios
 function chiaroscuro(e) {
   let color = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
   console.log(color);
