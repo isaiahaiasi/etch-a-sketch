@@ -13,7 +13,7 @@
       <div class="option-container centered" id="draw-mode-options">
         <div class="option-title"><p>DRAW MODES</p></div>
         <div class="radio-container">
-          <input type="radio" name="draw-mode" id="option-selected" value="selected">
+          <input type="radio" name="draw-mode" id="option-selected" value="selected" checked>
           <label for="option-selected">Selected Color</label>
         </div>
         <div class="radio-container">
@@ -29,7 +29,7 @@
       <div class="option-container centered" id="blend-mode-options">
         <div class="option-title"><p>BLEND MODES</p></div>
         <div class="radio-container">
-          <input type="radio" name="blend-mode" id="option-replace" value="replace">
+          <input type="radio" name="blend-mode" id="option-replace" value="replace" checked>
           <label for="option-replace">Replace</label>
         </div>
         <div class="radio-container">
@@ -46,7 +46,7 @@
     <div class="etch-container centered">
     </div>
     <div class="options-group centered" id="options-bottom">
-      <div class="option-container">
+      <div class="option-container color-picker-group">
         <div class="sliders-group">
           <div class="slider-container rgb-slider">
             <p>R:</p>
@@ -65,8 +65,8 @@
           </div>
           <div class="slider-container rgb-slider">
             <p>A:</p>
-            <input type="range" min="0" max="255" value="0" class="slider">
-            <p class="slider-value">0</p>
+            <input type="range" min="0" max="1" value="1" step="0.01" class="slider">
+            <p class="slider-value">1</p>
           </div>
         </div>
         <div class="color-preview"></div>

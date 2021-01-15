@@ -51,7 +51,23 @@ drawModeButtons.forEach((btn)=> {
 // TODO: blend mode inputs
 
 // RGBA Slider Inputs:
+rgbaCustom = [0,0,0,1];
+rgbaSliderCtn = document.querySelector(".color-picker-group");
+rgbaCustomPreview = rgbaSliderCtn.querySelector(".color-preview");
+rgbaSliders = rgbaSliderCtn.querySelectorAll(".rgb-slider");
+for(let i = 0; i < rgbaSliders.length; i++) {
+  rgbaSliders[i].querySelector(".slider").addEventListener("change", e => {
+    let newColorChannelValue = e.target.value;
+    rgbaCustom[i] = newColorChannelValue;
+    rgbaSliders[i].querySelector(".slider-value").textContent = newColorChannelValue;
+    updateColorPreview(rgbaCustomPreview);
+  });
+}
 
+function updateColorPreview(previewBox) {
+  previewBox.style.backgroundColor = 
+      `rgba(${rgbaCustom[0]},${rgbaCustom[1]},${rgbaCustom[2]},${rgbaCustom[3]})`;
+}
 
 function generateGrid(size) {
   while (etchCtn.firstChild) {
@@ -83,14 +99,14 @@ function setPixelColor(e) {
   e.target.style.backgroundColor = getColor(e);
 }
 
-// Coloring functions
+// GETCOLOR FUNCTIONS
 function randomShade() {
   let shade = Math.random() * 100;
   return `hsl(40, 50%, ${shade}%)`;
 }
 
 function constantColor() {
-  return "rgb(0,0,255)";
+  return rgbaCustomPreview.style.backgroundColor;
 }
 
 function totallyRandomColor() {
@@ -125,3 +141,4 @@ function chiaroscuro(e) {
 
 // MAIN
 generateGrid(initialGridSize);
+updateColorPreview(rgbaCustomPreview);

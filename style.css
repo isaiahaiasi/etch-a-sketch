@@ -115,6 +115,9 @@ label {
 .color-preview {
   height:100px;
   width: 100px;
+  margin:10px;
+  border: 2px solid black;
+  border-radius:10px;
 }
 
 .flex-column {
