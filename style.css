@@ -1,18 +1,22 @@
 
-.root {
+:root {
   --grid-size: 4;
   --box-shadow-color:rgba(3, 6, 37, 0.774);
 }
 
+/* Add background animation */
 html {
   height:100%;
   background:linear-gradient(45deg, #0A1045, #ED33B9);
   color: white;
   font-family:sans-serif;
 }
+
 body {
   display:flex;
   flex-direction:column;
+  font-weight:500;
+  text-shadow: 0 .11em 5px var(--box-shadow-color);
 }
 .centered {
   margin:auto;
@@ -20,11 +24,15 @@ body {
 
 header {
   font-size: 5em;
+  font-weight: 700;
+  text-align: center;
 }
 
 .etch-container {
   width: 500px;
   height: 500px;
+  max-width:90vw;
+  max-height: 90vw;
   display: grid;
   grid-template-columns: repeat(var(--grid-size), 1fr);
   grid-template-rows: repeat(var(--grid-size), 1fr);
@@ -32,7 +40,7 @@ header {
   margin: 1em auto 1em auto;
 
   border: 2px solid black;
-  box-shadow: 0 10px 15px rgba(3, 6, 37, 0.774);
+  box-shadow: 0 10px 15px var(--box-shadow-color);
 }
 
 .pixel {
@@ -51,13 +59,19 @@ header {
   display:flex;
 
   margin:5px auto 5px auto;
-  padding: 0 1em 0 1em;
+  padding: 0 .6em 0 .6em;
 
   background-color:rgba(3, 6, 37, 0.4);
 
   border: 2px solid black;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(3, 6, 37, 0.774);
+  box-shadow: 0 5px 15px var(--box-shadow-color);
+}
+
+.option-title {
+  padding-right: .5em;
+  border-right: 2px solid black;
+  font-weight: 600;
 }
 
 .radio-container {
