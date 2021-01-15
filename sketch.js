@@ -1,7 +1,8 @@
 
 const initialGridSize = 16;
 let desiredGridSize = initialGridSize;
-let getColor = chiaroscuro;
+let getColor = constantColor;
+let blendColors = replace;
 let pixels = [];
 let recolorable = true;
 
@@ -96,7 +97,11 @@ function generateGrid(size) {
 }
 
 function setPixelColor(e) {
-  e.target.style.backgroundColor = getColor(e);
+  let colorA = e.target.style.backgroundColor; // OLD COLOR
+  let colorB = getColor(e); // NEW COLOR
+
+  let newColor = blendColors(colorA, colorB);
+  e.target.style.backgroundColor = newColor;
 }
 
 // GETCOLOR FUNCTIONS
@@ -137,6 +142,51 @@ function chiaroscuro(e) {
   let newColor = `rgba(${rgbNew[0]},${rgbNew[1]},${rgbNew[2]}, ${rgb[3] + 0.1})`;
   return newColor;
   
+}
+
+// BLENDCOLOR FUNCTIONS
+function replace(colA, colB) { return colB; }
+
+function mix(colA, colB) {
+  let colAArray = convertColorStringToArray(colA);
+  let colBArray = convertColorStringToArray(colB);
+  let colCArray = [];
+
+  // For each color channel, blend between colA & colB by the alpha of colB
+  for (let i = 0; i < 3; i++) {
+    colCArray[i] = lerp(colAArray[i], colBArray[i], colBArray[3]);
+  }
+
+  colCArray[3] = Math.min(colAArray[3] + colBArray[3], 1); //final alpha is additive
+
+  return getColorAsRgbaString(colCArray);
+}
+
+function multiply(colA, colB) {
+
+}
+
+// COLOR HELPERS
+function convertColorStringToArray(col) {
+  // It seems as if, if all values are zero, the property returns an empty string
+  if (col === "") {
+    return [0,0,0,0];
+  }
+
+  let rgba = col.match(/([0-9.])+/gi);
+  rgba = [(+rgba[0]), (+rgba[1]), (+rgba[2]), (+rgba[3])];
+  rgba[3] = isNaN(rgba[3]) ? 1 : rgba[3];
+  return rgba;
+}
+
+//takes an array of colors [r, g, b] or [r, g, b, a]
+function getColorAsRgbaString(rgba) {
+  rgba[3] = isNaN(rgba[3]) ? 1 : rgba[3];
+  return `rgba(${rgba[0]},${rgba[1]},${rgba[2]},${rgba[3]})`;
+}
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
 }
 
 // MAIN
