@@ -8,11 +8,20 @@
   </head>
   <body>
     <header class="centered">ETCH-A-SKETCH</header>
-    <div class="option-container centered">
-      <p>Pen Modes:</p>
-      <button class="btn" data-mode="selected">Selected Color</button>
-      <button class="btn" data-mode="random">Random Color</button>
-      <button class="btn" data-mode="random-range">Random Color In Range</button>
+    <div class="option-container centered" id="draw-mode-options">
+      <p>Draw Modes:</p>
+      <div class="radio-container">
+        <input type="radio" name="draw-mode" id="selected" value="selected">
+        <label for="selected">Selected Color</label>
+      </div>
+      <div class="radio-container">
+        <input type="radio" name="draw-mode" id="random" value="random">
+        <label for="random">Random Color</label>
+      </div>
+      <div class="radio-container">
+        <input type="radio" name="draw-mode" id="darken" value="darken">
+        <label for="darken">Darken</label>
+      </div>
     </div>
     <div class="option-container centered">
       <p>Blend Modes:</p>

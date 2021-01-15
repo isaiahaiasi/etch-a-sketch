@@ -39,3 +39,9 @@ header {
 .option-container {
   display:flex;
 }
+
+.radio-container {
+  display:flex;
+  align-items: center;
+  margin:10px;
+}

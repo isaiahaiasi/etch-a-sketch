@@ -1,22 +1,57 @@
 
+let getColor = chiaroscuro;
+
 const root = document.documentElement;
-const etchContainer = document.querySelector(".etch-container");
+const etchCtn = document.querySelector(".etch-container");
+
+// BUTTONS
+
+// reset
 const gridResetBtn = document.querySelector("#reset-btn");
+
+// draw mode
+const drawModeOptionsCtn = document.querySelector("#draw-mode-options");
+const drawModeButtons = drawModeOptionsCtn.querySelectorAll("input");
+drawModeButtons.forEach((btn)=> {
+  let drawFunction;
+  switch (btn.value) {
+    case "selected":
+      drawFunction = constantColor;
+      break;
+    case "random":
+      drawFunction = totallyRandomColor;
+      break;
+    case "darken":
+      drawFunction = chiaroscuro;
+      break;
+    default:
+      console.log(`Draw Mode option button set to invalid value ${btn.value}`, btn);
+      return;
+  }
+
+  // TODO: blend mode
+
+  btn.addEventListener("change", () => {
+    getColor = drawFunction;
+  });
+
+});
+
 
 const initialGridSize = 16;
 
 
 let pixels = [];
 let recolorable = true;
-let getColor = chiaroscuro;
+
 
 function setPixelColor(e) {
   e.target.style.backgroundColor = getColor(e);
 }
 
 function generateGrid(size) {
-  while (etchContainer.firstChild) {
-    etchContainer.removeChild(etchContainer.firstChild);
+  while (etchCtn.firstChild) {
+    etchCtn.removeChild(etchCtn.firstChild);
   }
   pixels = [];
 
@@ -35,7 +70,7 @@ function generateGrid(size) {
       }
     });
 
-    etchContainer.appendChild(pixel);
+    etchCtn.appendChild(pixel);
     pixels.push(pixel);
   }
 }
