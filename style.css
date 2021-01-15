@@ -1,19 +1,25 @@
 
 .root {
   --grid-size: 4;
+  --box-shadow-color:rgba(3, 6, 37, 0.774);
 }
 
+html {
+  height:100%;
+  background:linear-gradient(45deg, #0A1045, #ED33B9);
+  color: white;
+  font-family:sans-serif;
+}
 body {
   display:flex;
   flex-direction:column;
-  background-color:lightcoral
 }
 .centered {
   margin:auto;
 }
 
 header {
-  font-size: xx-large;
+  font-size: 5em;
 }
 
 .etch-container {
@@ -22,12 +28,17 @@ header {
   display: grid;
   grid-template-columns: repeat(var(--grid-size), 1fr);
   grid-template-rows: repeat(var(--grid-size), 1fr);
-  border: 1px solid black;
+  
+  margin: 1em auto 1em auto;
+
+  border: 2px solid black;
+  box-shadow: 0 10px 15px rgba(3, 6, 37, 0.774);
 }
 
 .pixel {
   border: 1px solid rgba(0, 0, 0, 0.192);
   background-color:rgba(0, 0, 0, 0);
+  box-shadow: 1px 1px 2px black;
 }
 
 .btn {
@@ -38,6 +49,15 @@ header {
 
 .option-container {
   display:flex;
+
+  margin:5px auto 5px auto;
+  padding: 0 1em 0 1em;
+
+  background-color:rgba(3, 6, 37, 0.4);
+
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(3, 6, 37, 0.774);
 }
 
 .radio-container {
