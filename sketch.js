@@ -10,6 +10,9 @@ const root = document.documentElement;
 const etchCtn = document.querySelector(".etch-container");
 
 // INPUTS
+// fill
+const fillBtn = document.querySelector("#fill-btn");
+fillBtn.addEventListener("click", fill);
 // reset
 const resetBtn = document.querySelector("#reset-btn");
 resetBtn.addEventListener("click", ()=> {
@@ -198,6 +201,13 @@ function getColorAsRgbaString(rgba) {
 
 function lerp(a, b, t) {
   return a + (b - a) * t;
+}
+
+function fill() {
+  const col = constantColor();
+  pixels.forEach(pixel => {
+    pixel.style.backgroundColor = col;
+  });
 }
 
 // MAIN
