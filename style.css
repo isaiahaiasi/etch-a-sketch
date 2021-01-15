@@ -45,3 +45,7 @@ header {
   align-items: center;
   margin:10px;
 }
+
+.slider-container {
+  display:flex;
+}

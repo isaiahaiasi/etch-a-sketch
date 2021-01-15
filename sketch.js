@@ -1,15 +1,29 @@
 
+const initialGridSize = 16;
+let desiredGridSize = initialGridSize;
 let getColor = chiaroscuro;
+let pixels = [];
+let recolorable = true;
 
 const root = document.documentElement;
 const etchCtn = document.querySelector(".etch-container");
 
-// BUTTONS
-
+// INPUTS
 // reset
-const gridResetBtn = document.querySelector("#reset-btn");
+const resetBtn = document.querySelector("#reset-btn");
+resetBtn.addEventListener("click", ()=> {
+  generateGrid(desiredGridSize);
+});
 
-// draw mode
+// grid size slider
+const resetSliderCtn = document.querySelector(".reset-slider");
+resetSliderCtn.querySelector(".slider").addEventListener("change", e => {
+  desiredGridSize = e.target.value;
+  resetSliderCtn.querySelector("#slider-value").textContent = desiredGridSize;
+  generateGrid(desiredGridSize);
+});
+
+// draw mode inputs
 const drawModeOptionsCtn = document.querySelector("#draw-mode-options");
 const drawModeButtons = drawModeOptionsCtn.querySelectorAll("input");
 drawModeButtons.forEach((btn)=> {
@@ -29,50 +43,43 @@ drawModeButtons.forEach((btn)=> {
       return;
   }
 
-  // TODO: blend mode
-
   btn.addEventListener("change", () => {
     getColor = drawFunction;
   });
-
 });
 
-
-const initialGridSize = 16;
-
-
-let pixels = [];
-let recolorable = true;
+// TODO: blend mode inputs
 
 
-function setPixelColor(e) {
-  e.target.style.backgroundColor = getColor(e);
-}
 
 function generateGrid(size) {
   while (etchCtn.firstChild) {
     etchCtn.removeChild(etchCtn.firstChild);
   }
   pixels = [];
-
+  
   root.style.setProperty("--grid-size", size);
-
+  
   for(let i = 0; i < (size * size); i++) {
     let pixel = document.createElement("div");
     pixel.setAttribute("class","pixel");
     pixel.setAttribute("id",`${i%size}-${Math.floor(i/size)}`);
-  
+    
     pixel.addEventListener("mouseenter", setPixelColor);
-  
+    
     pixel.addEventListener("mouseleave", e => {
       if (!recolorable) {
         pixel.removeEventListener("mouseenter", setPixelColor);
       }
     });
-
+    
     etchCtn.appendChild(pixel);
     pixels.push(pixel);
   }
+}
+
+function setPixelColor(e) {
+  e.target.style.backgroundColor = getColor(e);
 }
 
 // Coloring functions
@@ -93,7 +100,8 @@ function totallyRandomColor() {
 }
 
 // The only reason I pass the event to these functions...
-// TODO: refactor so I'm just passing the div, so I can call outside of the event
+// TODO: I will probably have to delete this, because if I have blend modes,
+//    then the draw mode should be agnostic of the color beneath it.
 function chiaroscuro(e) {
   let color = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
   let rgb = color.match(/([0-9.])+/gi);
@@ -116,8 +124,3 @@ function chiaroscuro(e) {
 
 // MAIN
 generateGrid(initialGridSize);
-
-gridResetBtn.addEventListener("click", ()=> {
-  let newSize = prompt("What grid size do you want?");
-  generateGrid(Math.min(Math.max(newSize,2), 100));
-});
