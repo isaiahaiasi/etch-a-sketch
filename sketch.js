@@ -19,7 +19,7 @@ resetBtn.addEventListener("click", ()=> {
 const resetSliderCtn = document.querySelector(".reset-slider");
 resetSliderCtn.querySelector(".slider").addEventListener("change", e => {
   desiredGridSize = e.target.value;
-  resetSliderCtn.querySelector("#slider-value").textContent = desiredGridSize;
+  resetSliderCtn.querySelector(".slider-value").textContent = desiredGridSize;
   generateGrid(desiredGridSize);
 });
 
@@ -50,6 +50,7 @@ drawModeButtons.forEach((btn)=> {
 
 // TODO: blend mode inputs
 
+// RGBA Slider Inputs:
 
 
 function generateGrid(size) {

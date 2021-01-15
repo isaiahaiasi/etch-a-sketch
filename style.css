@@ -2,6 +2,8 @@
 :root {
   --grid-size: 4;
   --box-shadow-color:rgba(3, 6, 37, 0.774);
+  --highlight-fill-color:rgba(8, 50, 128, 0.3);
+  --source-width: 500px;
 }
 
 /* Add background animation */
@@ -17,21 +19,24 @@ body {
   flex-direction:column;
   font-weight:500;
   text-shadow: 0 .11em 5px var(--box-shadow-color);
+  
 }
+
 .centered {
   margin:auto;
+  max-width:90vw;
 }
 
 header {
-  font-size: 5em;
+  font-size: 4em;
   font-weight: 700;
   text-align: center;
 }
 
 .etch-container {
-  width: 500px;
-  height: 500px;
-  max-width:90vw;
+  width: var(--source-width);
+  height: var(--source-width);
+  
   max-height: 90vw;
   display: grid;
   grid-template-columns: repeat(var(--grid-size), 1fr);
@@ -55,9 +60,13 @@ header {
   border-radius: 10px;
 }
 
+.options-group {
+  width: 600px;
+}
+
 .option-container {
   display:flex;
-
+  justify-content:space-around;
   margin:5px auto 5px auto;
   padding: 0 .6em 0 .6em;
 
@@ -66,6 +75,10 @@ header {
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: 0 5px 15px var(--box-shadow-color);
+}
+
+.option-container:hover {
+  background-color:var(--highlight-fill-color);
 }
 
 .option-title {
@@ -80,6 +93,30 @@ header {
   margin:10px;
 }
 
+label {
+  margin:5px;
+}
+#options-bottom {
+  display:flex;
+}
 .slider-container {
   display:flex;
+  align-items:center;
+}
+
+.slider {
+  padding: 0;
+}
+
+.rgb-slider {
+  height:2em;
+}
+
+.color-preview {
+  height:100px;
+  width: 100px;
+}
+
+.flex-column {
+  flex-direction:column;
 }
