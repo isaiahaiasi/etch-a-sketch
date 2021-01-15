@@ -24,7 +24,7 @@ resetSliderCtn.querySelector(".slider").addEventListener("change", e => {
   generateGrid(desiredGridSize);
 });
 
-// draw mode inputs
+// DRAW MODE INPUTS
 const drawModeOptionsCtn = document.querySelector("#draw-mode-options");
 const drawModeButtons = drawModeOptionsCtn.querySelectorAll("input");
 drawModeButtons.forEach((btn)=> {
@@ -46,7 +46,28 @@ drawModeButtons.forEach((btn)=> {
   });
 });
 
-// TODO: blend mode inputs
+// BLEND MODE INPUTS
+const blendModeOptionsCtn = document.querySelector("#blend-mode-options");
+const blendModeButtons = blendModeOptionsCtn.querySelectorAll("input");
+blendModeButtons.forEach((btn)=> {
+  let blendFunction;
+  switch (btn.value) {
+    case "replace":
+      blendFunction = replace;
+      break;
+    case "mix":
+      blendFunction = mix;
+      break;
+    default:
+      console.log(`Blend Mode option button set to invalid value ${btn.value}`, btn);
+      return;
+  }
+
+  btn.addEventListener("change", () => {
+    blendColors = blendFunction;
+  });
+});
+
 
 // RGBA Slider Inputs:
 rgbaCustom = [0,0,0,1];
