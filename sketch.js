@@ -105,7 +105,7 @@ function generateGrid(size) {
     pixel.setAttribute("class","pixel");
     pixel.setAttribute("id",`${i%size}-${Math.floor(i/size)}`);
     
-    pixel.addEventListener("mouseenter", setPixelColor);
+    pixel.addEventListener("mouseenter", e => {setPixelColor(e.target)});
     
     pixel.addEventListener("mouseleave", e => {
       if (!recolorable) {
@@ -118,12 +118,12 @@ function generateGrid(size) {
   }
 }
 
-function setPixelColor(e) {
-  let colorA = e.target.style.backgroundColor; // OLD COLOR
-  let colorB = getColor(e); // NEW COLOR
+function setPixelColor(pixel) {
+  let colorA = pixel.style.backgroundColor; // OLD COLOR
+  let colorB = getColor(); // NEW COLOR
 
   let newColor = blendColors(colorA, colorB);
-  e.target.style.backgroundColor = newColor;
+  pixel.style.backgroundColor = newColor;
 }
 
 // GETCOLOR FUNCTIONS
