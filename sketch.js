@@ -58,6 +58,9 @@ blendModeButtons.forEach((btn)=> {
     case "mix":
       blendFunction = mix;
       break;
+    case "multiply":
+      blendFunction = multiply;
+      break;
     default:
       console.log(`Blend Mode option button set to invalid value ${btn.value}`, btn);
       return;
@@ -159,7 +162,19 @@ function mix(colA, colB) {
 }
 
 function multiply(colA, colB) {
+  let colA_Arr = convertColorStringToArray(colA);
+  let colB_Arr = convertColorStringToArray(colB);
+  let colC_Arr = [];
 
+  // For each color channel, multiply colA & colB then divide by 255
+  for (let i = 0; i < 3; i++) {
+    let c = colA_Arr[i] * colB_Arr[i] / 255; // Full effect of multiply
+    colC_Arr[i] = lerp(colA_Arr[i], c, colB_Arr[3]); // Power of effect = alpha of new col
+  }
+
+  colC_Arr[3] = Math.min(colA_Arr[3] + colB_Arr[3], 1);
+
+  return getColorAsRgbaString(colC_Arr);
 }
 
 // COLOR HELPERS
