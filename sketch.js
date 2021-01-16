@@ -38,6 +38,9 @@ drawModeButtons.forEach((btn)=> {
     case "random":
       drawFunction = totallyRandomColor;
       break;
+    case "random-shade":
+      drawFunction = randomShade;
+      break;
     default:
       console.log(`Draw Mode option button set to invalid value ${btn.value}`, btn);
       return;
@@ -129,11 +132,6 @@ function setPixelColor(pixel) {
 }
 
 // GETCOLOR FUNCTIONS
-function randomShade() {
-  let shade = Math.random() * 100;
-  return `hsl(40, 50%, ${shade}%)`;
-}
-
 function constantColor() {
   return rgbaCustomPreview.style.backgroundColor;
 }
@@ -146,6 +144,26 @@ function totallyRandomColor() {
   return `rgba(${r},${g},${b},${a})`;
 }
 
+// Return random shade while trying to preserve hue of custom color
+// c = (cOld * random(256)) / cOldSum
+function randomShade() {
+  const cAArr = convertColorStringToArray(rgbaCustomPreview.style.backgroundColor);
+  let cASum = 0;
+  for(let i = 0; i < 3; i++) {
+    cASum += cAArr[i];
+  }
+
+  let cBArr = [];
+  const max = 255 * Math.max(cASum, 1) / Math.max(...cAArr, 1);
+  const rand = Math.random() * max;
+
+  for(let i = 0; i < 3; i++) {
+    cBArr[i] = (Math.max(cAArr[i], 1) * rand) / Math.max(cASum, 1);
+  }
+
+  cBArr[3] = cAArr[3];
+  return getColorAsRgbaString(cBArr);
+}
 // BLENDCOLOR FUNCTIONS
 function replace(colA, colB) { return colB; }
 
