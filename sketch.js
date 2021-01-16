@@ -107,7 +107,7 @@ function generateGrid(size) {
     let pixelClassList = "pixel";
     
     if (size <= 32) {
-      pixelClassList = pixelClassList + " pixel-hover pixel-anim";
+      pixelClassList = pixelClassList + " pixel-hover";
     }
 
     pixel.setAttribute("class",pixelClassList);

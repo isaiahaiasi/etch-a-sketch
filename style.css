@@ -17,36 +17,16 @@ html {
   overflow:hidden;
 }
 
-.bg {
-  z-index:-1;
-  
-}
-
 body {
   margin:auto;
   display:flex;
   flex-direction:column;
   font-weight:500;
-  text-shadow: 0 .11em 5px var(--box-shadow-color);
+  text-shadow: 0 .11em 3px black;
 
   background:linear-gradient(120deg, #0A1045, #ED34B9, #FA8B2A );
   background-size:100% 100%;
   background-position: 0 50%;
-  /* animation: gradient 10s ease infinite;
-  animation-direction:alternate;
-  overflow:hidden; */
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0 50%;
-  }
-  50% {
-    background-position: 50% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
 }
 
 .centered {
@@ -57,7 +37,9 @@ body {
 header {
   font-size: 4em;
   font-weight: 700;
+  font-family: 'Potta One', cursive;
   text-align: center;
+  text-shadow: .05em .12em 0 black;
 }
 
 .etch-container {
@@ -71,7 +53,8 @@ header {
   
   margin: 1em auto 1em auto;
 
-  border: 2px solid black;
+  border: 3px solid rgba(0, 0, 0, 0.884);
+  border-radius: 6px;
   box-shadow: 0 10px 15px var(--box-shadow-color);
 }
 
@@ -228,5 +211,6 @@ footer {
 
 a {
   color:#0A1045;
+  text-shadow: none;
+  font-weight: 600;
 }
-
