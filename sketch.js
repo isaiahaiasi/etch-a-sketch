@@ -145,7 +145,7 @@ function totallyRandomColor() {
 }
 
 // Return random shade while trying to preserve hue of custom color
-// c = (cOld * random(256)) / cOldSum
+// c = (colOld * cappedRandom) / colOldSum
 function randomShade() {
   const cAArr = convertColorStringToArray(rgbaCustomPreview.style.backgroundColor);
   let cASum = 0;
