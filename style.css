@@ -42,6 +42,13 @@ header {
   text-shadow: .05em .12em 0 black;
 }
 
+@media (max-width: 760px) {
+  header {
+    transition: .3s;
+    font-size: 8vw;
+  }
+}
+
 .etch-container {
   width: var(--source-width);
   height: var(--source-width);
@@ -54,7 +61,7 @@ header {
   margin: 1em auto 1em auto;
 
   border: 3px solid rgba(0, 0, 0, 0.884);
-  border-radius: 6px;
+  border-radius: 3px;
   box-shadow: 0 10px 15px var(--box-shadow-color);
 }
 
@@ -204,8 +211,8 @@ label {
 
 footer {
   position:fixed;
-  left: 50%;
-  transform:translate(-50%);
+  text-align:center;
+  width:100%;
   bottom:0;
 }
 

@@ -75,10 +75,10 @@ blendModeButtons.forEach((btn)=> {
 
 
 // RGBA Slider Inputs:
-rgbaCustom = [0,0,0,1];
-rgbaSliderCtn = document.querySelector(".color-picker-group");
-rgbaCustomPreview = rgbaSliderCtn.querySelector(".color-preview");
-rgbaSliders = rgbaSliderCtn.querySelectorAll(".rgb-slider");
+const rgbaCustom = [0,0,0,1];
+const rgbaSliderCtn = document.querySelector(".color-picker-group");
+const rgbaCustomPreview = rgbaSliderCtn.querySelector(".color-preview");
+const rgbaSliders = rgbaSliderCtn.querySelectorAll(".rgb-slider");
 for(let i = 0; i < rgbaSliders.length; i++) {
   rgbaSliders[i].querySelector(".slider").addEventListener("change", e => {
     let newColorChannelValue = e.target.value;
@@ -139,10 +139,11 @@ function constantColor() {
 }
 
 function totallyRandomColor() {
-  let r = Math.random() * 256;
-  let g = Math.random() * 256;
-  let b = Math.random() * 256;
-  return `rgb(${r},${g},${b})`;
+  const r = Math.random() * 256;
+  const g = Math.random() * 256;
+  const b = Math.random() * 256;
+  const a = rgbaSliders[3].querySelector(".slider").value;
+  return `rgba(${r},${g},${b},${a})`;
 }
 
 // BLENDCOLOR FUNCTIONS
