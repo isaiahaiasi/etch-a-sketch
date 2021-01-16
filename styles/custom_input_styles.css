@@ -1,0 +1,121 @@
+/* BUTTON */
+.btn {
+  width:100%;
+  padding:5px;
+  margin:8px;
+  border:2px solid black;
+  border-radius: 10px;
+  background-color:transparent;
+  color:white;
+  font-weight:600;
+  font-size:1em;
+}
+
+.btn:hover {
+  border-color:white;
+  background-color:rgba(0, 5, 77, 0.301);
+}
+
+.btn:focus {
+  outline:none;
+}
+
+/* SLIDER */
+.slider {
+  appearance:none;
+  padding: 0;
+  margin: 3px;
+  min-width:15px;
+  height:1.1em;
+  border: 2px solid black;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.507) inset;
+  background-color:transparent;
+  transform:skewX(-10deg);
+  transition:.1s;
+}
+
+.slider:hover, .radio-container > input:hover {
+  background-color:rgba(255, 255, 255, 0.315);
+}
+
+.slider:focus, .radio-container > input:focus {
+  outline:none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color:black;
+  width:10px;
+  height:15px;
+}
+.slider::-moz-range-thumb {
+  background-color:black;
+  border: none;
+  border-radius: 0;
+  width:10px;
+  height:15px;
+}
+
+.rgb-slider {
+  height:2em;
+}
+
+/* RADIO */
+/* Jesus, what an ordeal... */
+.radio-container {
+  display:block;
+  position:relative;
+  align-items: center;
+  margin:0px;
+  padding-left:40px;
+  margin-bottom:5px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radio-container input {
+  appearance:none;
+  position:absolute;
+}
+
+.radio-container:hover input ~ .checkmark {
+  background-color:rgba(255, 255, 255, 0.322);
+}
+
+.radio-container > input:checked ~ .checkmark {
+  background-color:rgba(255, 255, 255, 0.322);
+}
+
+.checkmark {
+  position: absolute;
+  top: -3px;
+  left: 7px;
+  height:20px;
+  width:20px;
+  transform:skewX(-10deg);
+  border: 3px solid black;
+  transform:skewX(-10deg);
+  margin:0 4px 0 4px;
+  border-radius:0;
+}
+
+.checkmark:after {
+  content:"";
+  position: absolute;
+  display:none;
+}
+
+.radio-container input:checked ~ .checkmark:after {
+  display:block;
+}
+
+.radio-container .checkmark:after {
+  top: 0px;
+  left: 0px;
+  width: 15px;
+  height: 20px;
+  background-color: black;
+}

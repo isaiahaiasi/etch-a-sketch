@@ -6,7 +6,8 @@
     <script defer src="sketch.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/custom_input_styles.css">
   </head>
   <body>
     <div class="bg"></div>
@@ -15,18 +16,18 @@
     <div class="options-group centered">
       <div class="option-container mode-grid" id="draw-mode-options">
         <div class="option-title"><p>DRAW MODES</p></div>
-        <div class="radio-container">
-          <input type="radio" name="draw-mode" id="option-selected" value="selected" checked>
-          <label for="option-selected">Selected Color</label>
-        </div>
-        <div class="radio-container">
+        <label class="radio-container" for="option-selected">Custom
+          <input class="radio" type="radio" name="draw-mode" id="option-selected" value="selected" checked>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio-container" for="option-random">Random
           <input type="radio" name="draw-mode" id="option-random" value="random">
-          <label for="option-random">Random Color</label>
-        </div>
-        <div class="radio-container">
+          <span class="checkmark"></span>
+        </label>
+        <label class="radio-container" for="option-darken">Grays
           <input type="radio" name="draw-mode" id="option-darken" value="darken">
-          <label for="option-darken">Darken</label>
-        </div>
+          <span class="checkmark"></span>
+        </label>
       </div>
 
       <div class="option-container mode-grid" id="blend-mode-options">
