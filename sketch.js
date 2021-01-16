@@ -4,7 +4,6 @@ let desiredGridSize = initialGridSize;
 let getColor = constantColor;
 let blendColors = mix;
 let pixels = [];
-let recolorable = true;
 
 const root = document.documentElement;
 const etchCtn = document.querySelector(".etch-container");
@@ -108,19 +107,13 @@ function generateGrid(size) {
     let pixelClassList = "pixel";
     
     if (size <= 32) {
-      pixelClassList = pixelClassList + " pixel-hover";
+      pixelClassList = pixelClassList + " pixel-hover pixel-anim";
     }
 
     pixel.setAttribute("class",pixelClassList);
     pixel.setAttribute("id",`${i%size}-${Math.floor(i/size)}`);
     
     pixel.addEventListener("mouseenter", e => {setPixelColor(e.target)});
-    
-    pixel.addEventListener("mouseleave", e => {
-      if (!recolorable) {
-        pixel.removeEventListener("mouseenter", setPixelColor);
-      }
-    });
     
     etchCtn.appendChild(pixel);
     pixels.push(pixel);
@@ -210,9 +203,9 @@ function lerp(a, b, t) {
 }
 
 function fill() {
-  const col = constantColor();
   pixels.forEach(pixel => {
-    pixel.style.backgroundColor = col;
+    // SO inefficient, but I want a noisy fill for "random color" instead of one color...
+    pixel.style.backgroundColor = getColor();
   });
 }
 
