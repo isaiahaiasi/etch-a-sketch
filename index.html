@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class="bg"></div>
     <header class="centered">ETCH-A-SKETCH</header>
 
     <div class="options-group centered">
-      <div class="option-container centered" id="draw-mode-options">
+      <div class="option-container mode-grid" id="draw-mode-options">
         <div class="option-title"><p>DRAW MODES</p></div>
         <div class="radio-container">
           <input type="radio" name="draw-mode" id="option-selected" value="selected" checked>
@@ -26,7 +27,7 @@
         </div>
       </div>
 
-      <div class="option-container centered" id="blend-mode-options">
+      <div class="option-container mode-grid" id="blend-mode-options">
         <div class="option-title"><p>BLEND MODES</p></div>
         <div class="radio-container">
           <input type="radio" name="blend-mode" id="option-replace" value="replace" checked>
@@ -49,22 +50,22 @@
       <div class="option-container color-picker-group">
         <div class="sliders-group">
           <div class="slider-container rgb-slider">
-            <p>R:</p>
+            <p>R</p>
             <input type="range" min="0" max="255" value="0" class="slider">
             <p class="slider-value">0</p>
           </div>
           <div class="slider-container rgb-slider">
-            <p>G:</p>
+            <p>G</p>
             <input type="range" min="0" max="255" value="0" class="slider">
             <p class="slider-value">0</p>
           </div>
           <div class="slider-container rgb-slider">
-            <p>B:</p>
+            <p>B</p>
             <input type="range" min="0" max="255" value="0" class="slider">
             <p class="slider-value">0</p>
           </div>
           <div class="slider-container rgb-slider">
-            <p>A:</p>
+            <p>A</p>
             <input type="range" min="0" max="1" value="1" step="0.01" class="slider">
             <p class="slider-value">1</p>
           </div>
@@ -76,7 +77,7 @@
         <button class="btn" id="fill-btn">FILL</button>
         <button class="btn" id="reset-btn">RESET</button>
         <div class="slider-container reset-slider">
-          <p>Grid size:</p>
+          <p>GRID</p>
           <input type="range" min="2" max="64" value="16" class="slider">
           <p class="slider-value">16</p>
         </div>
