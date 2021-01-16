@@ -58,7 +58,7 @@ blendModeButtons.forEach((btn)=> {
       blendFunction = replace;
       break;
     case "mix":
-      blendFunction = mix;
+      blendFunction = alphaBlend;
       break;
     case "multiply":
       blendFunction = multiply;
@@ -149,6 +149,7 @@ function totallyRandomColor() {
 // BLENDCOLOR FUNCTIONS
 function replace(colA, colB) { return colB; }
 
+// (My naive approach to alpha blending)
 function mix(colA, colB) {
   let colAArray = convertColorStringToArray(colA);
   let colBArray = convertColorStringToArray(colB);
@@ -164,9 +165,34 @@ function mix(colA, colB) {
   return getColorAsRgbaString(colCArray);
 }
 
+// "Proper" alpha blending
+// Uses an implementation of the Painters Algorithm found here:
+// https://en.wikipedia.org/wiki/Alpha_compositing#Description
+function alphaBlend(colUnder, colOver) {
+  const cUnderArr = convertColorStringToArray(colUnder);
+  const cOverArr = convertColorStringToArray(colOver);
+  
+  const aO = cOverArr[3]; // Alpha channels
+  const aU = cUnderArr[3];
+  
+  let cFinalArr = [];
+
+  for (let i = 0; i < 3; i++) {
+    const cO = cOverArr[i];
+    const cU = cUnderArr[i];
+    
+
+    cFinalArr[i] = (cO * aO) + (cU * aU * (1 - aO)) / (aO + (aU * (1 - aO)));
+  }
+
+  cFinalArr[3] = aO + (aU * (1 - aO));
+
+  return getColorAsRgbaString(cFinalArr);
+}
+
 function multiply(colA, colB) {
-  let colA_Arr = convertColorStringToArray(colA);
-  let colB_Arr = convertColorStringToArray(colB);
+  const colA_Arr = convertColorStringToArray(colA);
+  const colB_Arr = convertColorStringToArray(colB);
   let colC_Arr = [];
 
   // For each color channel, multiply colA & colB then divide by 255
