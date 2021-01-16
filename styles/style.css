@@ -150,3 +150,8 @@ a {
   text-shadow: none;
   font-weight: 600;
 }
+
+em {
+  font-weight: 700;
+  font-style:normal;
+}
