@@ -2,7 +2,7 @@
 const initialGridSize = 16;
 let desiredGridSize = initialGridSize;
 let getColor = constantColor;
-let blendColors = replace;
+let blendColors = mix;
 let pixels = [];
 let recolorable = true;
 
@@ -105,7 +105,13 @@ function generateGrid(size) {
   
   for(let i = 0; i < (size * size); i++) {
     let pixel = document.createElement("div");
-    pixel.setAttribute("class","pixel");
+    let pixelClassList = "pixel";
+    
+    if (size <= 32) {
+      pixelClassList = pixelClassList + " pixel-hover";
+    }
+
+    pixel.setAttribute("class",pixelClassList);
     pixel.setAttribute("id",`${i%size}-${Math.floor(i/size)}`);
     
     pixel.addEventListener("mouseenter", e => {setPixelColor(e.target)});
